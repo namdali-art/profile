@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>남지훈 (남달리) | AI 바이브코딩 전문 강사 & 타로 포트폴리오</title>
+    <title>남지훈 (남달리) | AI 바이브코딩 전문 강사 & 타로마스터</title>
 
-    <!-- Google Fonts - Noto Sans KR Unified Font Family -->
+    <!-- Google Fonts - Noto Sans KR -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -35,16 +36,14 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Noto Sans KR', 'sans-serif'],
-                        serif: ['Noto Sans KR', 'sans-serif'],
-                        mono: ['Noto Sans KR', 'sans-serif']
+                        sans: ['Noto Sans KR', 'sans-serif']
                     }
                 }
             }
         }
     </script>
 
-    <!-- Lucide Icons -->
+    <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -58,7 +57,7 @@
             overflow-x: hidden;
         }
 
-        /* Clean Minimal Card Styles */
+        /* Clean Glass Card Styles */
         .clean-card {
             background-color: rgba(255, 255, 255, 0.95);
             border: 1px solid #E2E8F0;
@@ -70,7 +69,7 @@
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
         }
 
-        /* Subtle Hover Effect */
+        /* Subtle Hover Lifting Effect */
         .hover-lift {
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
         }
@@ -78,7 +77,7 @@
             transform: translateY(-3px);
         }
 
-        /* Nav link indicator */
+        /* Nav link indicator line */
         .nav-link {
             position: relative;
         }
@@ -155,7 +154,6 @@
                 <a href="#channels" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors">공식 채널</a>
             </nav>
 
-            <!-- Controls & CTAs -->
             <div class="flex items-center space-x-3">
                 <!-- Theme Toggle Button -->
                 <button onclick="toggleTheme()" id="themeToggleBtn" aria-label="테마 변경" class="p-2 rounded-lg bg-slate-200/70 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 text-slate-700 dark:text-amber-400 hover:opacity-80 transition-all">
@@ -227,7 +225,6 @@
                     </a>
                 </div>
 
-                <!-- Stats Counter Grid -->
                 <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
                     <div>
                         <span class="block text-xl sm:text-2xl font-black text-brand-accent dark:text-brand-gold">Google Gemini</span>
@@ -244,13 +241,11 @@
                 </div>
             </div>
 
-            <!-- Hero Right: Instructor Profile Photo Card -->
             <div class="lg:col-span-5 w-full">
                 <div class="clean-card rounded-2xl p-4 sm:p-5 space-y-4 hover-lift">
                     
-                    <!-- Instructor Image Frame (Responsive Aspect Ratio for Mobile & Desktop) -->
+                    <!-- Instructor Image Frame -->
                     <div class="relative rounded-xl overflow-hidden group border border-slate-200 dark:border-slate-700/80 shadow-md aspect-[3/4] sm:aspect-auto sm:h-80 lg:h-96 w-full">
-                        <!-- 강사 프로필 사진 -->
                         <img 
                             src="https://namdali-art.github.io/profile/img/profile-jihoon.jpg" 
                             alt="남지훈 강사 프로필 사진" 
@@ -385,7 +380,88 @@
 
             </div>
 
-            <!-- Instructor Live Apps Showcase -->
+            <!-- AI Vibe Coding Lecture & Workshop Photo Gallery -->
+            <div class="clean-card rounded-2xl p-6 sm:p-8 mb-12">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 pb-4 border-b border-slate-200 dark:border-slate-800">
+                    <div>
+                        <span class="text-xs font-bold text-brand-accent dark:text-brand-gold uppercase tracking-wider block mb-1">Live Lecture Gallery</span>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
+                            AI 바이브코딩 강의 & 워크숍 현장
+                        </h3>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 sm:mt-0 font-medium">
+                        초심자·시니어·기업 대상 실전 100% 당일 완결 강의 모습
+                    </p>
+                </div>
+
+                <!-- 4 Photo Grid (Uniform Aspect Ratio & 5px Inset Trim) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Photo 1 -->
+                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-slate-800 hover-lift">
+                        <div class="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-slate-950">
+                            <img 
+                                src="https://namdali-art.github.io/profile/img/vibe1.png" 
+                                alt="AI 바이브코딩 강의 현장 1" 
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                style="clip-path: inset(5px);"
+                                onerror="this.onerror=null; this.src='https://placehold.co/600x450/1e293b/FFFFFF?text=Lecture+Photo+1';"
+                            >
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700/80">
+                            <span class="text-[11px] font-bold text-slate-800 dark:text-slate-200 block truncate">1:1 맞춤 세심 프롬프트 코칭</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 2 -->
+                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-slate-800 hover-lift">
+                        <div class="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-slate-950">
+                            <img 
+                                src="https://namdali-art.github.io/profile/img/vibe2.png" 
+                                alt="AI 바이브코딩 강의 현장 2" 
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                style="clip-path: inset(5px);"
+                                onerror="this.onerror=null; this.src='https://placehold.co/600x450/1e293b/FFFFFF?text=Lecture+Photo+2';"
+                            >
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700/80">
+                            <span class="text-[11px] font-bold text-slate-800 dark:text-slate-200 block truncate">구글 제미나이 활용 대화 실습</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 3 -->
+                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-slate-800 hover-lift">
+                        <div class="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-slate-950">
+                            <img 
+                                src="https://namdali-art.github.io/profile/img/vibe3.png" 
+                                alt="AI 바이브코딩 강의 현장 3" 
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                style="clip-path: inset(5px);"
+                                onerror="this.onerror=null; this.src='https://placehold.co/600x450/1e293b/FFFFFF?text=Lecture+Photo+3';"
+                            >
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700/80">
+                            <span class="text-[11px] font-bold text-slate-800 dark:text-slate-200 block truncate">1인 1웹앱 당일 완결 실습</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 4 -->
+                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-slate-800 hover-lift">
+                        <div class="aspect-[4/3] w-full overflow-hidden flex items-center justify-center bg-slate-950">
+                            <img 
+                                src="https://namdali-art.github.io/profile/img/vibe4.jpg" 
+                                alt="AI 바이브코딩 강의 현장 4" 
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                style="clip-path: inset(5px);"
+                                onerror="this.onerror=null; this.src='https://placehold.co/600x450/1e293b/FFFFFF?text=Lecture+Photo+4';"
+                            >
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700/80">
+                            <span class="text-[11px] font-bold text-slate-800 dark:text-slate-200 block truncate">몰입도 높인 AI 바이브코딩 워크숍</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="clean-card rounded-2xl p-7 lg:p-10">
                 <div class="text-center max-w-2xl mx-auto mb-8 space-y-1">
                     <span class="text-xs font-bold text-brand-accent dark:text-brand-gold uppercase tracking-wider">Instructor Portfolio</span>
@@ -396,40 +472,61 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                     
-                    <!-- App 1 -->
-                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-brand-accent dark:text-brand-gold">Global Mood App</span>
-                            <i data-lucide="globe" class="w-4 h-4 text-slate-400"></i>
+                    <!-- App 1: 글로브튠 -->
+                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-brand-accent dark:text-brand-gold">Global Radio App</span>
+                                <i data-lucide="globe" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">글로브튠 (GlobeTune)</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal mb-5">
+                                전세계 라디오 스트리밍을 모아서 지구모형으로 탐색하는 서비스
+                            </p>
                         </div>
-                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">글로브튠 (GlobeTune)</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                            글로벌 음악 데이터와 실시간 감정/분위기를 결합한 인터랙티브 사운드 웹 서비스.
-                        </p>
+                        <a href="https://dalifython.github.io/globetune/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-between text-xs font-bold text-brand-accent dark:text-brand-gold hover:opacity-80 transition-opacity pt-3 border-t border-slate-200/80 dark:border-slate-700/80">
+                            <span>서비스 바로가기</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
                     </div>
 
-                    <!-- App 2 -->
-                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-brand-purple">Digital Healing</span>
-                            <i data-lucide="sparkles" class="w-4 h-4 text-slate-400"></i>
+                    <!-- App 2: 멍때리는 돌 -->
+                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-brand-purple">Digital Healing</span>
+                                <i data-lucide="sparkles" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                                <h4 class="text-lg font-bold text-slate-900 dark:text-white">멍때리는 돌</h4>
+                                <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-brand-purple/10 text-brand-purple border border-brand-purple/20">스마트폰 실행가능</span>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal mb-5">
+                                복잡한 마음을 비우도록 돕는 인터랙티브 감성 힐링 웹 프로그램.
+                            </p>
                         </div>
-                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">멍때리는 돌</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                            복잡한 마음을 비우도록 돕는 인터랙티브 감성 힐링 웹 프로그램.
-                        </p>
+                        <a href="https://minion.toss.im/7D1qut95" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-between text-xs font-bold text-brand-purple hover:opacity-80 transition-opacity pt-3 border-t border-slate-200/80 dark:border-slate-700/80">
+                            <span>서비스 바로가기</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
                     </div>
 
-                    <!-- App 3 -->
-                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-bold text-brand-cyan">Origin Prototype</span>
-                            <i data-lucide="calculator" class="w-4 h-4 text-slate-400"></i>
+                    <!-- App 3: 타로 생일수 계산기 -->
+                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-brand-cyan">Origin Prototype</span>
+                                <i data-lucide="calculator" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">타로 생일수 계산기</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal mb-5">
+                                강사 본인의 필요에서 출발해 AI 바이브 코딩 강사로 진화하게 만든 최초의 웹 앱.
+                            </p>
                         </div>
-                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">타로 생일수 계산기</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                            강사 본인의 필요에서 출발해 AI 바이브 코딩 강사로 진화하게 만든 최초의 웹 앱.
-                        </p>
+                        <a href="https://namdali-art.github.io/job/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-between text-xs font-bold text-brand-cyan hover:opacity-80 transition-opacity pt-3 border-t border-slate-200/80 dark:border-slate-700/80">
+                            <span>원본 웹앱 바로가기</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
                     </div>
 
                 </div>
@@ -577,23 +674,39 @@
                         </div>
                     </div>
 
-                    <div class="clean-card p-4 rounded-xl flex items-start space-x-3.5">
-                        <div class="p-2 bg-brand-purple/10 text-brand-purple rounded-lg mt-0.5">
-                            <i data-lucide="users" class="w-4 h-4"></i>
+                    <div class="clean-card p-4 rounded-xl space-y-3">
+                        <div class="flex items-start space-x-3.5">
+                            <div class="p-2 bg-brand-purple/10 text-brand-purple rounded-lg mt-0.5 shrink-0">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">도봉구청 제3회 '정청모아' 취업컨설팅 부스</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">대학생 및 취업준비 청년들을 위한 타로 기반 1:1 진로/취업 상담 부스를 성황리에 운영하였습니다.</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">도봉구청 제3회 '정청모아' 취업컨설팅 부스</h4>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">대학생 및 취업준비 청년들을 위한 타로 기반 1:1 진로/취업 상담 부스를 성황리에 운영하였습니다.</p>
+
+                        <!-- Dobong-gu Counseling Video Player (Vertical Optimized) -->
+                        <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-900 shadow-sm mt-2">
+                            <div class="px-3.5 py-2 bg-slate-800/90 border-b border-slate-700/80 flex items-center justify-between text-xs font-semibold text-slate-200">
+                                <span class="flex items-center gap-1.5 text-[11px]">
+                                    <i data-lucide="video" class="w-3.5 h-3.5 text-brand-purple"></i>
+                                    도봉구청 취업컨설팅 현장 스케치
+                                </span>
+                            </div>
+                            <div class="w-full bg-slate-950/90 flex justify-center py-3 px-2">
+                                <video controls playsinline preload="metadata" class="w-full max-w-[280px] sm:max-w-[320px] max-h-[460px] rounded-lg object-contain bg-black shadow-lg">
+                                    <source src="https://namdali-art.github.io/profile/img/tarotandjob.mp4" type="video/mp4">
+                                    브라우저가 비디오 재생을 지원하지 않습니다.
+                                </video>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right: Tarot Master Profile Photo Card -->
             <div class="lg:col-span-5 w-full">
                 <div class="clean-card rounded-2xl p-4 space-y-3 hover-lift">
                     <div class="relative rounded-xl overflow-hidden border border-brand-purple/20 shadow-md aspect-[3/4] sm:aspect-auto sm:h-96 lg:h-[420px] w-full">
-                        <!-- 타로마스터 프로필 사진 -->
                         <img 
                             src="https://namdali-art.github.io/profile/img/profile-dali.jpg" 
                             alt="타로마스터 남달리 프로필 및 상담 현장" 
@@ -771,7 +884,6 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-5 py-3 rounded-xl shadow-xl flex items-center space-x-2.5 text-xs font-semibold border border-white/10">
         <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
         <span id="toastMsg">클립보드에 복사되었습니다.</span>
@@ -814,7 +926,6 @@
 
         initTheme();
 
-        // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -822,7 +933,6 @@
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        // Email Templates & Modal Logic
         const RECIPIENT_EMAIL = "namdali@namdali.com";
         const inquiryModal = document.getElementById('inquiryModal');
         const inquiryTypeSelect = document.getElementById('inquiryType');
