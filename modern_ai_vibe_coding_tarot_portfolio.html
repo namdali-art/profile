@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>남지훈 (남달리) | AI 바이브코딩 전문 강사 & 타로 포트폴리오</title>
+
+    <!-- Google Fonts - Noto Sans KR Unified Font Family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#F59E0B',
+                            goldGlow: '#FDE68A',
+                            accent: '#FF5733',
+                            purple: '#8B5CF6',
+                            cyan: '#06B6D4',
+                            darkBg: '#0B0F17',
+                            darkCard: '#131926',
+                            darkSurface: '#182030',
+                            darkBorder: '#232D42',
+                            lightBg: '#F8FAFC',
+                            lightCard: '#FFFFFF',
+                            lightSurface: '#F1F5F9',
+                            lightBorder: '#E2E8F0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        serif: ['Noto Sans KR', 'sans-serif'],
+                        mono: ['Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif !important;
+            word-break: keep-all;
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Clean Minimal Card Styles */
+        .clean-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        }
+        .dark .clean-card {
+            background-color: #131926;
+            border: 1px solid #232D42;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Subtle Hover Effect */
+        .hover-lift {
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Nav link indicator */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #FF5733;
+            transition: width 0.2s ease;
+        }
+        .dark .nav-link::after {
+            background-color: #F59E0B;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232D42;
+            border-radius: 3px;
+        }
+
+        #toast {
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-brand-lightBg text-slate-800 dark:bg-brand-darkBg dark:text-slate-100 antialiased selection:bg-brand-accent selection:text-white transition-colors duration-300">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-lightBg/90 dark:bg-brand-darkBg/90 backdrop-blur-md border-b border-brand-lightBorder dark:border-brand-darkBorder transition-all duration-200">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Brand / Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-9 h-9 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-black text-lg shadow-sm">
+                    N
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-base font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                        남지훈
+                        <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-brand-accent/10 text-brand-accent dark:bg-brand-gold/10 dark:text-brand-gold border border-brand-accent/20 dark:border-brand-gold/20">남달리</span>
+                    </span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium tracking-wide">
+                        AI Instructor & Tarot Master
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation (Removed Student Works) -->
+            <nav class="hidden lg:flex items-center space-x-7 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                <a href="#hero" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors">소개</a>
+                <a href="#vibe-coding" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors">바이브코딩</a>
+                <a href="#curriculum" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors">커리큘럼</a>
+                <a href="#story" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors">브랜드 스토리</a>
+                <a href="#tarot" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors">타로 멘토링</a>
+                <a href="#channels" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors">공식 채널</a>
+            </nav>
+
+            <!-- Controls & CTAs -->
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" id="themeToggleBtn" aria-label="테마 변경" class="p-2 rounded-lg bg-slate-200/70 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 text-slate-700 dark:text-amber-400 hover:opacity-80 transition-all">
+                    <i id="themeIcon" data-lucide="sun" class="w-4 h-4"></i>
+                </button>
+
+                <!-- Quick Action CTA -->
+                <button onclick="openInquiryModal()" class="hidden sm:inline-flex items-center text-xs font-bold text-white bg-slate-900 dark:bg-white dark:text-slate-900 px-4 py-2.5 rounded-lg hover:opacity-90 transition-all shadow-sm">
+                    <i data-lucide="send" class="w-3.5 h-3.5 mr-2"></i>
+                    <span>강의 & 출강 문의</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-slate-800 dark:text-slate-200" aria-label="메뉴 열기">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-brand-lightBg dark:bg-brand-darkBg border-b border-brand-lightBorder dark:border-brand-darkBorder px-6 py-5 transition-all">
+            <div class="flex flex-col space-y-3 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                <a href="#hero" class="mobile-link py-2 border-b border-slate-200 dark:border-slate-800">소개</a>
+                <a href="#vibe-coding" class="mobile-link py-2 border-b border-slate-200 dark:border-slate-800">AI 바이브 코딩 강의</a>
+                <a href="#curriculum" class="mobile-link py-2 border-b border-slate-200 dark:border-slate-800">실전 커리큘럼</a>
+                <a href="#story" class="mobile-link py-2 border-b border-slate-200 dark:border-slate-800">브랜드 스토리</a>
+                <a href="#tarot" class="mobile-link py-2 border-b border-slate-200 dark:border-slate-800">타로 진로 & 취업 멘토링</a>
+                <a href="#channels" class="mobile-link py-2 border-b border-slate-200 dark:border-slate-800">공식 인스타그램 & 블로그</a>
+                <button onclick="openInquiryModal()" class="mt-2 w-full py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold rounded-lg flex items-center justify-center space-x-2 shadow">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    <span>강의 출강 문의하기</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="pt-32 pb-16 md:pt-40 md:pb-24 max-w-6xl mx-auto px-6">
+        
+        <!-- Status Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full clean-card text-xs font-semibold text-slate-800 dark:text-slate-200 mb-6">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span>바이브코딩 강사 남지훈 × 타로마스터 남달리</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Hero Left Content -->
+            <div class="lg:col-span-7 space-y-6">
+                <h1 class="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">
+                    구글 제미나이로 완성하는<br>
+                    <span class="text-brand-accent dark:text-brand-gold">
+                        AI 바이브 코딩,
+                    </span><br>
+                    당일 나만의 웹앱 1개 완성!
+                </h1>
+
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-xl">
+                    어려운 프로그래밍 문법을 배울 필요 없습니다. 오로지 구글 제미나이(Google Gemini)만을 활용하여 대화하듯 프롬프트를 작성하고, 초심자부터 시니어 어르신까지 강의 당일 본인에게 진짜 필요한 실전 웹앱을 100% 직접 완성하도록 지도합니다.
+                </p>
+
+                <!-- Hero CTAs -->
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <button onclick="openInquiryModal()" class="inline-flex items-center justify-center px-6 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-xs rounded-lg hover:opacity-90 transition-all shadow-sm">
+                        <span>강의 / 출강 문의하기</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                    <a href="#vibe-coding" class="inline-flex items-center justify-center px-6 py-3.5 clean-card text-slate-800 dark:text-slate-200 font-bold text-xs rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                        <span>교육 커리큘럼 보기</span>
+                    </a>
+                </div>
+
+                <!-- Stats Counter Grid -->
+                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <div>
+                        <span class="block text-xl sm:text-2xl font-black text-brand-accent dark:text-brand-gold">Google Gemini</span>
+                        <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-0.5 block">전용 AI 솔루션 활용</span>
+                    </div>
+                    <div>
+                        <span class="block text-xl sm:text-2xl font-black text-slate-900 dark:text-white">1인 1웹앱</span>
+                        <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-0.5 block">당일 완결형 실습</span>
+                    </div>
+                    <div>
+                        <span class="block text-xl sm:text-2xl font-black text-slate-900 dark:text-white">초심자 & 시니어</span>
+                        <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-0.5 block">맞춤형 눈높이 강의</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Right: Instructor Profile Photo Card -->
+            <div class="lg:col-span-5">
+                <div class="clean-card rounded-2xl p-5 space-y-4 hover-lift">
+                    
+                    <!-- Instructor Image Frame -->
+                    <div class="relative rounded-xl overflow-hidden group border border-slate-200 dark:border-slate-700/80 shadow-md">
+                        <!-- 강사 프로필 사진 (src 속성 값에 실제 강사 사진 URL/파일명 입력) -->
+                        <img 
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
+                            alt="남지훈 강사 프로필 사진" 
+                            class="w-full h-72 sm:h-80 object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x800/1e293b/FFFFFF?text=Instructor+Profile+Photo';"
+                        >
+                        <!-- Floating Badge Overlay -->
+                        <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex items-end justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-gold text-slate-950 border border-brand-gold/30">
+                                    AI Vibe Coding Specialist
+                                </span>
+                                <h3 class="text-xl font-extrabold text-white mt-1">남지훈 <span class="text-xs font-normal text-slate-300">(남달리)</span></h3>
+                            </div>
+                            <span class="text-[11px] font-medium text-emerald-400 flex items-center gap-1.5 bg-slate-900/80 px-2.5 py-1 rounded-md backdrop-blur-sm border border-emerald-500/20">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> 출강 및 강의 가능
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Dual Expertise Summary Grid -->
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-0.5">
+                            <span class="text-[11px] font-bold text-brand-accent dark:text-brand-gold flex items-center gap-1">
+                                <i data-lucide="code-2" class="w-3 h-3"></i> AI 바이브코딩
+                            </span>
+                            <span class="text-[11px] text-slate-600 dark:text-slate-300 font-medium block">남지훈 대표강사</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-0.5">
+                            <span class="text-[11px] font-bold text-brand-purple flex items-center gap-1">
+                                <i data-lucide="compass" class="w-3 h-3"></i> 타로 멘토링
+                            </span>
+                            <span class="text-[11px] text-slate-600 dark:text-slate-300 font-medium block">타로마스터 남달리</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="vibe-coding" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-brand-lightBorder dark:border-brand-darkBorder transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-6">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-slate-200 dark:border-slate-800">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-accent dark:text-brand-gold block mb-1">01. Main Tracks</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Gemini Vibe Coding Track</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 md:mt-0 max-w-md leading-relaxed">
+                    초보자부터 시니어 어르신까지, 복잡한 코드 작성 대신 구글 제미나이 프롬프트 논리 설계로 나에게 필요한 웹앱을 당일 직접 만듭니다.
+                </p>
+            </div>
+
+            <!-- Modern Clean Cards Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mb-12">
+                
+                <!-- Track 1 -->
+                <div class="md:col-span-7 clean-card rounded-2xl p-7 flex flex-col justify-between hover-lift">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-brand-accent/10 text-brand-accent dark:bg-brand-gold/10 dark:text-brand-gold flex items-center justify-center font-bold">
+                                <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                                Senior & Beginner Friendly
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                            초심자 & 시니어 맞춤형 AI 바이브코딩
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal mb-6">
+                            디지털 기기가 서툰 어르신과 코딩을 전혀 모르는 입문자도 쉽고 재미있게 이해할 수 있는 눈높이 강의를 진행합니다. 수강생 전원이 당일 자신에게 필요한 실전 웹앱을 1개 이상 제작하여 높은 수업 만족도를 보유하고 있습니다.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 mr-1.5 text-brand-accent dark:text-brand-gold"></i> 쉬운 설명과 1:1 세심한 코칭</div>
+                        <div class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 mr-1.5 text-brand-accent dark:text-brand-gold"></i> 어르신 수강생 전원 웹앱 제작 성공</div>
+                    </div>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="md:col-span-5 clean-card rounded-2xl p-7 flex flex-col justify-between hover-lift">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-brand-purple/10 text-brand-purple flex items-center justify-center font-bold">
+                                <i data-lucide="cpu" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                                1-Day Gemini Special
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                            구글 제미나이 100% 활용 특강
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal mb-6">
+                            오로지 구글 제미나이(Google Gemini)만을 활용하여 유료 도구 결제 부담 없이 아이디어 대화부터 UI 설계, 실전 서비스 완성까지 하루 만에 완결합니다.
+                        </p>
+                    </div>
+
+                    <div class="space-y-1.5 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 mr-1.5 text-brand-purple"></i> Gemini 대화형 프롬프팅 단기 완성</div>
+                    </div>
+                </div>
+
+                <!-- Track 3 -->
+                <div class="md:col-span-12 clean-card rounded-2xl p-7 lg:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 hover-lift">
+                    <div class="space-y-2 lg:max-w-xl">
+                        <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                            Corporate & Campus
+                        </span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                            기업/기관/대학 맞춤형 바이브코딩 워크숍
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                            아이디어 구상부터 UI 구현, 실제 작동하는 완성형 웹 애플리케이션으로 신속히 제작하는 맞춤형 가속 프로그램입니다.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 w-full lg:w-auto">
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-center flex-1 lg:flex-none min-w-[130px]">
+                            <span class="block text-xl font-black text-slate-900 dark:text-white">1인 1웹</span>
+                            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">당일 직접 완성</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-center flex-1 lg:flex-none min-w-[130px]">
+                            <span class="block text-xl font-black text-brand-cyan">Gemini</span>
+                            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">전용 대화 프로세스</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Instructor Live Apps Showcase -->
+            <div class="clean-card rounded-2xl p-7 lg:p-10">
+                <div class="text-center max-w-2xl mx-auto mb-8 space-y-1">
+                    <span class="text-xs font-bold text-brand-accent dark:text-brand-gold uppercase tracking-wider">Instructor Portfolio</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        강사가 직접 개발한 라이브 서비스
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    
+                    <!-- App 1 -->
+                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-brand-accent dark:text-brand-gold">Global Mood App</span>
+                            <i data-lucide="globe" class="w-4 h-4 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">글로브튠 (GlobeTune)</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+                            글로벌 음악 데이터와 실시간 감정/분위기를 결합한 인터랙티브 사운드 웹 서비스.
+                        </p>
+                    </div>
+
+                    <!-- App 2 -->
+                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-brand-purple">Digital Healing</span>
+                            <i data-lucide="sparkles" class="w-4 h-4 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">멍때리는 돌</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+                            복잡한 마음을 비우도록 돕는 인터랙티브 감성 힐링 웹 프로그램.
+                        </p>
+                    </div>
+
+                    <!-- App 3 -->
+                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-brand-cyan">Origin Prototype</span>
+                            <i data-lucide="calculator" class="w-4 h-4 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">타로 생일수 계산기</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+                            강사 본인의 필요에서 출발해 AI 바이브 코딩 강사로 진화하게 만든 최초의 웹 앱.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="curriculum" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-slate-200 dark:border-slate-800">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-accent dark:text-brand-gold block mb-1">02. Syllabus & Step-by-Step</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Lectures & Methodology</h2>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 md:mt-0 max-w-md">
+                이론 학습을 줄이고 직접 시도하며 구현하는 4단계 실전 바이브 코딩 프로세스입니다.
+            </p>
+        </div>
+
+        <!-- 4-Step Process Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+            
+            <div class="clean-card p-6 rounded-2xl relative hover-lift">
+                <span class="text-3xl font-black text-slate-300 dark:text-slate-700 block mb-2">01</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1.5">아이디어 발상 & 로직 설계</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
+                    일상과 업무의 필요에서 아이디어를 찾고, 서비스 흐름도를 간단히 구조화합니다.
+                </p>
+            </div>
+
+            <div class="clean-card p-6 rounded-2xl relative hover-lift">
+                <span class="text-3xl font-black text-slate-300 dark:text-slate-700 block mb-2">02</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1.5">AI 프롬프트 대화 구조화</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
+                    AI가 원하는 UI/UX 및 기능을 정확히 구현하도록 대화형 프롬프트를 입력합니다.
+                </p>
+            </div>
+
+            <div class="clean-card p-6 rounded-2xl relative hover-lift">
+                <span class="text-3xl font-black text-slate-300 dark:text-slate-700 block mb-2">03</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1.5">실시간 수정 & 디버깅</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
+                    화면을 즉시 확인하며 다듬고, 발생한 오류를 AI와 함께 라이브로 해결합니다.
+                </p>
+            </div>
+
+            <div class="clean-card p-6 rounded-2xl relative hover-lift">
+                <span class="text-3xl font-black text-slate-300 dark:text-slate-700 block mb-2">04</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1.5">실전 동작 확인 & 기능 완성</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
+                    작동하는 웹앱을 직접 테스트해보고 원하는 인터랙션 요소를 추가해 나만의 완성작을 마감합니다.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Distinct Key Strengths -->
+        <div class="clean-card rounded-2xl p-7 sm:p-10">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-8 text-center">남지훈 강사 수업의 3가지 핵심 강점</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-brand-accent/10 text-brand-accent dark:bg-brand-gold/10 dark:text-brand-gold font-bold flex items-center justify-center text-xs">01</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">비전공자 눈높이 맞춤</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-normal">복잡한 기술 용어 대신 직관적인 대화 언어로 안내하여 문과생과 입문자도 쉽게 완수합니다.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-brand-purple/10 text-brand-purple font-bold flex items-center justify-center text-xs">02</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">결과물 완성 중심</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-normal">단순 문법 위주의 수업에서 벗어나 수강생 전원이 본인만의 완성된 웹앱을 직접 갖게 됩니다.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-brand-cyan/10 text-brand-cyan font-bold flex items-center justify-center text-xs">03</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">심리/진로 상담 시너지</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-normal">타로마스터 활동 경험으로 수강생의 진짜 아이디어와 잠재 능력을 발굴하도록 코칭합니다.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="story" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-brand-lightBorder dark:border-brand-darkBorder transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Title Column -->
+                <div class="lg:col-span-5 space-y-3 border-l-3 border-brand-accent dark:border-brand-gold pl-5">
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-accent dark:text-brand-gold block">03. Brand Origin Story</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                        타로 생일수 계산기에서 시작된<br>
+                        <span class="text-brand-accent dark:text-brand-gold">
+                            AI 바이브 코딩 강사의 여정
+                        </span>
+                    </h2>
+                    <p class="text-xs text-slate-500 font-medium">
+                        #타로생일수계산기 #AI바이브코딩 #남지훈 #남달리
+                    </p>
+                </div>
+
+                <!-- Right Story Content (Cleaned references) -->
+                <div class="lg:col-span-7 space-y-4 text-slate-600 dark:text-slate-300 font-normal text-sm leading-relaxed">
+                    <p>
+                        "기술의 첨단인 AI 바이브 코딩과 사람의 마음을 어루만지는 타로 상담이 어떻게 연결되나요?" 제가 가장 자주 받는 질문입니다. 저에게 이 두 영역은 완전히 하나의 경험에서 비롯되었습니다.
+                    </p>
+                    <p>
+                        저는 타로 생일수를 공부하며, 매번 복잡한 생일수를 일일이 손으로 계산하는 대신 <strong class="text-slate-900 dark:text-white font-semibold">'내가 직접 편리하게 쓸 수 있는 프로그램'</strong>을 만들고 싶다는 열망을 품었습니다. 개발 지식이 없었지만 구글 제미나이와의 대화를 통해 <strong class="text-brand-accent dark:text-brand-gold font-semibold">‘타로 생일수 계산기’</strong>를 직접 완성해 냈고, 그 감격이 저를 AI 바이브 코딩 전문 강사의 길로 이끌었습니다.
+                    </p>
+                    <p>
+                        타로마스터 남달리로서 타인의 고민을 깊이 경청하는 세심함, 그리고 구글 제미나이로 아이디어를 실전 웹 서비스로 구현해 내는 남지훈 강사의 실전력이 결합하여 초심자부터 시니어 수강생까지 누구나 주저 없이 아이디어를 펼치도록 돕는 최고의 길잡이가 되어 드립니다.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="tarot" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Left Narrative Details -->
+            <div class="lg:col-span-7 space-y-5">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-accent dark:text-brand-gold block">04. Mentoring Speciality</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                    타로마스터 '남달리'의 직관으로,<br>
+                    <span class="text-brand-accent dark:text-brand-gold">
+                        청소년과 청년의 진로를 비추다
+                    </span>
+                </h2>
+                
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed font-normal text-xs sm:text-sm">
+                    타로는 내면의 잠재력을 이끌어내는 심리 직관 도구입니다. 진로와 취업 고민의 기로에 선 청소년과 대학생들에게 명확한 통찰과 용기를 전합니다.
+                </p>
+
+                <!-- Key Experience Bullets -->
+                <div class="space-y-3 pt-2">
+                    <div class="clean-card p-4 rounded-xl flex items-start space-x-3.5">
+                        <div class="p-2 bg-brand-accent/10 text-brand-accent dark:bg-brand-gold/10 dark:text-brand-gold rounded-lg mt-0.5">
+                            <i data-lucide="compass" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">고등학생 대상 직업체험 타로 특강</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">막연한 진로 결정의 압박에서 벗어나 자신의 성향과 적성을 자유롭게 탐색해보는 멘토링 프로그램.</p>
+                        </div>
+                    </div>
+
+                    <div class="clean-card p-4 rounded-xl flex items-start space-x-3.5">
+                        <div class="p-2 bg-brand-purple/10 text-brand-purple rounded-lg mt-0.5">
+                            <i data-lucide="users" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">도봉구청 제3회 '정청모아' 취업컨설팅 부스</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">대학생 및 취업준비 청년들을 위한 타로 기반 1:1 진로/취업 상담 부스를 성황리에 운영하였습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Tarot Master Profile Photo Card -->
+            <div class="lg:col-span-5">
+                <div class="clean-card rounded-2xl p-4 space-y-3 hover-lift">
+                    <div class="relative rounded-xl overflow-hidden border border-brand-purple/20 shadow-md">
+                        <!-- 타로마스터 프로필 사진 (src 속성 값에 실제 타로마스터 프로필 사진 URL/파일명 입력) -->
+                        <img 
+                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" 
+                            alt="타로마스터 남달리 프로필 및 상담 현장" 
+                            class="w-full h-[380px] object-cover object-top transition-transform duration-500 hover:scale-105"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x800/2e1065/FFFFFF?text=Tarot+Master+Nam+Dali';"
+                        >
+                        <!-- Overlay Info Badge -->
+                        <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex items-end justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-purple text-white border border-brand-purple/30">
+                                    Tarot Mentor & Counselor
+                                </span>
+                                <h3 class="text-lg font-bold text-white mt-1">타로마스터 남달리</h3>
+                                <p class="text-[11px] text-slate-300">청소년·취준생 진로 & 취업 멘토링 전문</p>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-brand-purple/30 backdrop-blur-md flex items-center justify-center text-amber-300 border border-brand-purple/40">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="px-2 py-1 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-medium">
+                        <span class="flex items-center gap-1.5">
+                            <i data-lucide="user-check" class="w-3.5 h-3.5 text-brand-purple"></i>
+                            타로마스터 '남달리' 프로필
+                        </span>
+                        <span class="text-brand-purple font-semibold">Nam Dali</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="channels" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-brand-lightBorder dark:border-brand-darkBorder transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-slate-200 dark:border-slate-800">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-accent dark:text-brand-gold block mb-1">05. Official Channels</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Connect with Nam Ji-hoon</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 md:mt-0 max-w-md">
+                    강의 소식, AI 개발 인사이트, 타로 이야기를 공유하는 공식 채널입니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Instagram Box -->
+                <div class="clean-card p-7 rounded-2xl flex flex-col justify-between hover-lift">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="inline-flex items-center text-xs font-bold text-brand-accent bg-brand-accent/10 px-2.5 py-1 rounded border border-brand-accent/20">
+                                <i data-lucide="instagram" class="w-3.5 h-3.5 mr-1.5"></i> Instagram
+                            </span>
+                            <span class="text-xs font-medium text-slate-400">@dali.nam</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                            남지훈 강사 공식 인스타그램
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal mb-6">
+                            강의 현장 스케치, 실전 AI 바이브 코딩 꿀팁, 숏폼 콘텐츠와 일상 스토리를 공유합니다.
+                        </p>
+                    </div>
+                    <a href="https://www.instagram.com/dali.nam/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-slate-900 dark:text-white hover:text-brand-accent dark:hover:text-brand-gold transition-colors">
+                        <span>@dali.nam 팔로우하기</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Naver Blog Box -->
+                <div class="clean-card p-7 rounded-2xl flex flex-col justify-between hover-lift">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="inline-flex items-center text-xs font-bold text-brand-gold bg-brand-gold/10 px-2.5 py-1 rounded border border-brand-gold/20">
+                                <i data-lucide="book-open" class="w-3.5 h-3.5 mr-1.5"></i> Naver Blog
+                            </span>
+                            <span class="text-xs font-medium text-slate-400">namdali-art</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                            남지훈 네이버 공식 블로그
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal mb-6">
+                            AI 바이브 코딩 가이드북, 프로토타입 개발 팁, 강의 후기 칼럼이 수록되어 있습니다.
+                        </p>
+                    </div>
+                    <a href="https://blog.naver.com/namdali-art" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-slate-900 dark:text-white hover:text-brand-gold transition-colors">
+                        <span>블로그 방문하기</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 text-center">
+        <div class="max-w-3xl mx-auto px-6 space-y-5">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-accent dark:text-brand-gold block">06. Lecture Booking</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                실전 결과물로 증명하는<br>
+                <span class="text-brand-accent dark:text-brand-gold">
+                    AI 바이브 코딩 강의를 경험해보세요.
+                </span>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-normal max-w-lg mx-auto leading-relaxed">
+                기업/기관 출강, 대학교 특강, 원데이 부트캠프 문의는 아래 버튼을 눌러 양식을 확인하신 후 신청해 주세요.
+            </p>
+
+            <div class="pt-2 flex justify-center">
+                <button onclick="openInquiryModal()" class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-xs rounded-lg hover:opacity-90 transition-all shadow-md">
+                    <i data-lucide="mail" class="w-4 h-4 mr-2"></i>
+                    <span>강의 출강 문의 신청하기</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-lightBg dark:bg-brand-darkBg border-t border-brand-lightBorder dark:border-brand-darkBorder py-10">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400 font-medium">
+            <div class="flex items-center space-x-2">
+                <span class="font-bold text-slate-900 dark:text-white">남지훈 (남달리)</span>
+                <span>© 2026 Nam Ji-hoon. All Rights Reserved.</span>
+            </div>
+            <div class="flex items-center space-x-5">
+                <a href="https://blog.naver.com/namdali-art" target="_blank" class="hover:text-slate-900 dark:hover:text-white transition-colors">Blog</a>
+                <a href="https://www.instagram.com/dali.nam/" target="_blank" class="hover:text-slate-900 dark:hover:text-white transition-colors">Instagram</a>
+                <button onclick="openInquiryModal()" class="hover:text-slate-900 dark:hover:text-white font-bold transition-colors">Direct Inquiry</button>
+            </div>
+        </div>
+    </footer>
+
+    <div id="inquiryModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div onclick="closeInquiryModal()" class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+
+        <div class="relative clean-card rounded-2xl p-6 sm:p-7 max-w-lg w-full z-10 space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3.5">
+                <div>
+                    <span class="text-[10px] text-brand-accent dark:text-brand-gold uppercase tracking-wider font-bold block">Inquiry Form</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">강의 & 출강 문의하기</h3>
+                </div>
+                <button onclick="closeInquiryModal()" class="p-1.5 text-slate-400 hover:text-slate-800 dark:hover:text-white rounded-lg">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3.5 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-800 dark:text-slate-200 mb-1.5">1. 문의 유형 선택</label>
+                    <select id="inquiryType" onchange="updateInquiryPreview()" class="w-full p-3 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-brand-accent">
+                        <option value="vibe-corp">기업 / 기관 - AI 바이브 코딩 출강 및 실전 워크숍</option>
+                        <option value="vibe-school">학교 / 대학 - 청소년 및 취준생 AI 특강</option>
+                        <option value="vibe-bootcamp">원데이 부트캠프 / 개별 수강 문의</option>
+                        <option value="tarot-youth">청소년 / 청년 - 타로 기반 진로 & 취업 컨설팅</option>
+                        <option value="collaboration">기타 제휴 및 개인 문의</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-800 dark:text-slate-200 mb-1.5">2. 작성 양식 미리보기</label>
+                    <textarea id="inquiryPreview" readonly class="w-full h-32 p-3 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-[11px] text-slate-700 dark:text-slate-300 resize-none focus:outline-none leading-relaxed"></textarea>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
+                <button onclick="sendDirectEmail()" class="flex-1 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-xs rounded-lg hover:opacity-90 transition-all flex items-center justify-center space-x-2">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <span>이메일 앱 연결</span>
+                </button>
+                <button onclick="copyInquiryTemplate()" class="py-3 px-4 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center justify-center space-x-1.5">
+                    <i data-lucide="copy" class="w-4 h-4"></i>
+                    <span>양식 복사</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-5 py-3 rounded-xl shadow-xl flex items-center space-x-2.5 text-xs font-semibold border border-white/10">
+        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+        <span id="toastMsg">클립보드에 복사되었습니다.</span>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Theme Controller
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+            updateThemeIcon();
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+                lucide.createIcons();
+            }
+        }
+
+        initTheme();
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Email Templates & Modal Logic
+        const RECIPIENT_EMAIL = "contact@alexkim.studio";
+        const inquiryModal = document.getElementById('inquiryModal');
+        const inquiryTypeSelect = document.getElementById('inquiryType');
+        const inquiryPreviewTextarea = document.getElementById('inquiryPreview');
+
+        const templates = {
+            'vibe-corp': {
+                subject: '[강의문의] 기업/기관 AI 바이브 코딩 출강 신청 - 남지훈 강사',
+                body: `안녕하세요 남지훈 강사님,\n\n[기업/기관명]에서 AI 바이브 코딩 출강 및 워크숍 문의를 드립니다.\n\n1. 기관/기업명: \n2. 담당자 성함 및 연락처: \n3. 희망 강의 일자 및 시간: \n4. 수강 대상 및 인원: \n5. 강의 목표: \n\n답변 부탁드립니다. 감사합니다.`
+            },
+            'vibe-school': {
+                subject: '[특강문의] 학교/청소년 AI 바이브 코딩 특강 신청 - 남지훈 강사',
+                body: `안녕하세요 남지훈 강사님,\n\n[학교/교육기관명]에서 청소년/대학생 대상 AI 바이브 코딩 특강을 문의합니다.\n\n1. 학교/기관명: \n2. 담당자 연락처: \n3. 희망 일시: \n4. 수강 대상: \n\n감사합니다.`
+            },
+            'vibe-bootcamp': {
+                subject: '[수강문의] 원데이 AI 바이브 코딩 부트캠프 신청 - 남지훈 강사',
+                body: `안녕하세요 남지훈 강사님,\n\nAI 바이브 코딩 개별 수강/부트캠프 신청 문의를 전합니다.\n\n1. 신청자 성함/연락처: \n2. 코딩 경험 유무: \n3. 만들고 싶은 아이디어: \n\n감사합니다.`
+            },
+            'tarot-youth': {
+                subject: '[부스/특강문의] 타로 기반 진로/취업 컨설팅 문의 - 남지훈 (남달리)',
+                body: `안녕하세요 남지훈 강사님,\n\n[행사명]에서 타로 기반 진로/취업 컨설팅 부스 문의를 드립니다.\n\n1. 행사명/기관명: \n2. 담당자 연락처: \n3. 행사 일시 및 장소: \n\n감사합니다.`
+            },
+            'collaboration': {
+                subject: '[제휴문의] 남지훈 강사 제휴 및 개인 문의',
+                body: `안녕하세요 남지훈 강사님,\n\n제휴 및 문의사항 전합니다.\n\n1. 성함 및 소속: \n2. 문의 내용: \n\n감사합니다.`
+            }
+        };
+
+        function openInquiryModal() {
+            inquiryModal.classList.remove('hidden');
+            updateInquiryPreview();
+        }
+
+        function closeInquiryModal() {
+            inquiryModal.classList.add('hidden');
+        }
+
+        function updateInquiryPreview() {
+            const key = inquiryTypeSelect.value;
+            const tpl = templates[key];
+            inquiryPreviewTextarea.value = `수신: ${RECIPIENT_EMAIL}\n제목: ${tpl.subject}\n\n${tpl.body}`;
+        }
+
+        function sendDirectEmail() {
+            const key = inquiryTypeSelect.value;
+            const tpl = templates[key];
+            const mailtoUrl = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(tpl.subject)}&body=${encodeURIComponent(tpl.body)}`;
+            window.location.href = mailtoUrl;
+        }
+
+        function copyInquiryTemplate() {
+            const textToCopy = inquiryPreviewTextarea.value;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showToast("양식이 클립보드에 복사되었습니다!");
+                }).catch(() => {
+                    fallbackCopyText(textToCopy);
+                });
+            } else {
+                fallbackCopyText(textToCopy);
+            }
+        }
+
+        function fallbackCopyText(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("양식이 클립보드에 복사되었습니다!");
+            } catch (err) {
+                showToast("복사에 실패했습니다. 직접 드래그하여 복사해 주세요.");
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+    </script>
+</body>
+</html>
